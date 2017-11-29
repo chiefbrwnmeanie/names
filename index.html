@@ -7,45 +7,78 @@
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+        <link rel="stylesheet" href="main.css">
+
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
         <script type="text/javascript" src="app.js"></script>
     </head>
-    <body ng-app="app" ng-controller="mainController">
+
+  <body ng-cloak ng-app="app" ng-controller="mainController">
       <div class="container-fluid">
-          <h1>Names</h1>
 
           <div class="row">
-          <form class="form-inline">
-              <div class="form-group">
-                  <label for="exampleInputName">Name</label>
-                  <input type="text" class="form-control" id="exampleInputName" placeholder="Enter a name" ng-model="newName">
+              <div class="col-md-12">
+                  <h1>Names</h1>
               </div>
-              <button type="submit" class="btn btn-default" ng-click="addName(newName)">Add</button>
-          </form>
           </div>
 
           <div class="row">
-          <div id = "grid-names" class="grid-names">
-              <table class="table">
-                  <tbody>
-                      <tr>
-                          <th>Name</th>
-                          <th>Score</th>
-                      </tr>
+              <div class="col-sm-12">
+                  <form class="form-inline">
+                      <div class="form-group">
+                          <label for="newName">Add Name: </label>
+                          <input name="newName" type="text" class="form-control" id="newName" placeholder="Enter a name" ng-model="newName">
+                      </div>
+                      <!-- had a naming conflict -->
+                      <button type="button" class="btn btn-default" ng-click="addName(newName)">Add</button>
+                     ... or...
+                      <label for="bulkBtn">Load a whole bunch</label>
+                      <button id="bulkBtn" type="button" class="btn btn-default" ng-click="bulkAdd()">Bulk Add</button>
+                  </form>
+            </div>
+          </div>
+          <div class="clearfix"> </div>
 
-                         <tr>
-                             <td>{{ newName }}</td>
+          <div class="row">
+              <div class="col-sm-12">
+                  <!-- was set as a submit and needed to just be a button-->
+                  <div class="form-group">
+
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <table class="table" ng-model="names">
+                  <tbody>
+                      <thead>
+                        <tr>
+                            <th>Row</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th> </th>
                         </tr>
+
+                      </thead>
+                         <tr ng-repeat="n in names track by $index">
+                             <td>{{ $index + 1 }}</td>
+                             <td>{{ n.name }}</td>
+                             <td> {{ n.score }}</td>
+                             <td><button type="button" class="btn btn-default" ng-click="deleteName( $index )">Delete</button></td>
+                        </tr>
+
+                      <tfoot class="score-sum">
+                          <tr>
+                              <th>Sum of Score: {{ scoreSum }}</th>
+                          </tr>
+                      </tfoot>
+
                   </tbody>
               </table>
           </div>
           </div>
 
-
-          <div class="row">
-              <button type="submit" class="btn btn-default" ngClick="bulkAdd()">Bulk Add</button>
-          </div>
       </div>
     </body>
 </html>
