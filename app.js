@@ -16,7 +16,9 @@ angular.module('app', [])
  - enforce strong typing w/typescript, i.e. interface for name data
  - angular forEach performs poorly. replace with native for or util library lodash (supposedly quicker)
    OR lazy load when scrolling?
+ - promises in addName function would be more ideal
  - look for other code optimizations
+ - add error handling... there is none currently.
 
  - UI
     - focus should move to input on regular add
@@ -36,8 +38,13 @@ angular.module('app', [])
         }
 
         names.push( inputName );
+
+        /* alphabetizes the name before adding to the table */
         $scope.sortNames();
+
+        /*sets the score after new position on the list is available*/
         inputName.score = $scope.scoreName(value, $scope.getPos(inputName.id));
+
         $scope.updateScoreSum();
 
         $scope.newName = '';
