@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta charset="utf-8">
+        <meta name="viewport" content="minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, width=device-width">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.15.0/lodash.min.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="mainController">
+      <div class="container-fluid">
+          <h1>Names</h1>
+
+          <div class="row">
+          <form class="form-inline">
+              <div class="form-group">
+                  <label for="exampleInputName">Name</label>
+                  <input type="text" class="form-control" id="exampleInputName" placeholder="Enter a name" ng-model="newName">
+              </div>
+              <button type="submit" class="btn btn-default" ng-click="addName(newName)">Add</button>
+          </form>
+          </div>
+
+          <div class="row">
+          <div id = "grid-names" class="grid-names">
+              <table class="table">
+                  <tbody>
+                      <tr>
+                          <th>Name</th>
+                          <th>Score</th>
+                      </tr>
+
+                         <tr>
+                             <td>{{ newName }}</td>
+                        </tr>
+                  </tbody>
+              </table>
+          </div>
+          </div>
+
+
+          <div class="row">
+              <button type="submit" class="btn btn-default" ngClick="bulkAdd()">Bulk Add</button>
+          </div>
+      </div>
+    </body>
+</html>
